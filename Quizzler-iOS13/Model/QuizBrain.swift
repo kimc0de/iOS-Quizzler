@@ -9,6 +9,7 @@
 import Foundation
 
 struct QuizBrain{
+    var score = 0
     var questionNumber = 0
     let quiz = [
         Question(q: "A slug's blood is green.", a: "True"),
@@ -26,8 +27,9 @@ struct QuizBrain{
         
     ]
     
-    func checkAnswer(_ userAnswer: String) -> Bool{
+    mutating func checkAnswer(_ userAnswer: String) -> Bool{
         if userAnswer == quiz[questionNumber].answer{
+            score += 1
             return true
         }else{
             return false
@@ -44,6 +46,11 @@ struct QuizBrain{
             questionNumber += 1
         }else{
             questionNumber = 0
+            score = 0
         }
+    }
+    
+    func getScore() -> Int {
+      return score
     }
 }
